@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosa Peter Inwe | Intelligent Photonics | Computer Vision | ML Engineer</title>
+<meta name="description" content="Nosa Peter Inwe, Erasmus Mundus MSc student in Intelligent Photonics, specializing in Biometrics and Computer Vision. 4 publications, IEEE and SPIE member. Available for thesis and internship.">
+<meta name="keywords" content="Nosa Inwe, Intelligent Photonics, Computer Vision, Deep Learning, Biometrics, YOLO, PyTorch, OpenCV, Erasmus Mundus, iPSRS, NIR spectroscopy, biomedical imaging, machine learning engineer, PhD candidate, Finland, UEF">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f8fafc;
+    --bg2: #f1f5f9;
+    --bg3: #e8eef6;
+    --accent: #2563eb;
+    --accent2: #7c3aed;
+    --accent3: #059669;
+    --gold: #d97706;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: rgba(37,99,235,0.12);
+    --card: rgba(255,255,255,0.9);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ===== NOISE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== GRADIENT ORBS ===== */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(37,99,235,0.05); top: -200px; right: -100px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(124,58,237,0.04); bottom: 200px; left: -150px; }
+  .orb-3 { width: 300px; height: 300px; background: rgba(5,150,105,0.04); top: 50%; left: 50%; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(248,250,252,0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-brand span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--text); background: rgba(37,99,235,0.08); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover { background: #1d4ed8 !important; color: #ffffff !important; }
+
+  /* ===== WRAPPER ===== */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    position: relative;
+  }
+
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-photo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-photo-ring {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 8px 40px rgba(37,99,235,0.18);
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 3px solid #fff;
+  }
+
+  @media (max-width: 680px) {
+    .hero-inner {
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
+    .hero-photo-ring {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(37,99,235,0.07);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 .first { color: var(--text); }
+  h1 .last { color: var(--accent); }
+
+  .hero-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: rgba(255,255,255,0.8);
+  }
+
+  .link-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(37,99,235,0.06);
+    transform: translateY(-1px);
+  }
+
+  .link-chip svg { width: 13px; height: 13px; }
+
+  /* stat styles removed */
+
+  /* ===== KEYWORDS STRIP ===== */
+  .keywords-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    margin-bottom: 5rem;
+    overflow: hidden;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+
+  .keywords-inner {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .kw {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .kw:hover { color: var(--accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
+
+  /* ===== SECTIONS ===== */
+  section { margin-bottom: 5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 1px 4px rgba(15,23,42,0.06);
+  }
+
+  .card:hover {
+    border-color: rgba(37,99,235,0.3);
+    box-shadow: 0 4px 20px rgba(37,99,235,0.07);
+    transform: translateY(-2px);
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-text {
+    grid-column: 1 / -1;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .about-text strong { color: var(--text); }
+
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .tag-blue { background: rgba(37,99,235,0.08); color: var(--accent); border: 1px solid rgba(37,99,235,0.18); }
+  .tag-purple { background: rgba(124,58,237,0.08); color: var(--accent2); border: 1px solid rgba(124,58,237,0.18); }
+  .tag-green { background: rgba(5,150,105,0.08); color: var(--accent3); border: 1px solid rgba(5,150,105,0.18); }
+  .tag-gold { background: rgba(217,119,6,0.08); color: var(--gold); border: 1px solid rgba(217,119,6,0.18); }
+
+  /* ===== TIMELINE ===== */
+  .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  }
+
+  .timeline-item.current::before {
+    background: var(--accent3);
+    box-shadow: 0 0 0 3px rgba(5,150,105,0.12);
+    animation: glowPulse 2s infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(5,150,105,0.12); }
+    50% { box-shadow: 0 0 0 6px rgba(5,150,105,0.06); }
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  .timeline-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .timeline-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-org {
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .timeline-points li {
+    font-size: 0.84rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-points li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .courses-list {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  /* ===== PROJECTS GRID ===== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-card:hover {
+    border-color: rgba(37,99,235,0.3);
+    box-shadow: 0 8px 30px rgba(37,99,235,0.08);
+    transform: translateY(-3px);
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .project-github {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .project-github:hover { color: var(--accent); }
+  .project-github svg { width: 16px; height: 16px; }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    background: rgba(124,58,237,0.07);
+    border: 1px solid rgba(124,58,237,0.15);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .metric {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent3);
+    background: rgba(5,150,105,0.07);
+    border: 1px solid rgba(5,150,105,0.15);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* ===== PUBLICATIONS ===== */
+  .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.2s;
+  }
+
+  .pub-item:hover {
+    border-color: rgba(37,99,235,0.2);
+    transform: translateX(3px);
+  }
+
+  .pub-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: rgba(37,99,235,0.15);
+    line-height: 1;
+    min-width: 24px;
+    padding-top: 2px;
+  }
+
+  .pub-content { flex: 1; }
+
+  .pub-title {
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+  }
+
+  .pub-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-link {
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+
+  .pub-link:hover { color: #1d4ed8; }
+  .pub-link svg { width: 10px; height: 10px; }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+
+  .skill-group:hover { border-color: rgba(37,99,235,0.25); }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.9rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-item {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+
+  .skill-item:hover { color: var(--accent); background: rgba(37,99,235,0.06); border-color: rgba(37,99,235,0.2); }
+
+  /* ===== AWARDS ===== */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .award-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .award-item:hover { border-color: rgba(217,119,6,0.3); }
+
+  .award-icon { font-size: 1.2rem; line-height: 1; margin-top: 1px; }
+
+  .award-name { font-size: 0.83rem; color: var(--text); font-weight: 500; margin-bottom: 0.15rem; }
+  .award-year { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  /* ===== MEMBERSHIPS ===== */
+  .memberships { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .membership-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 200px;
+    transition: all 0.2s;
+  }
+
+  .membership-card:hover { border-color: rgba(37,99,235,0.2); transform: translateY(-2px); }
+
+  .membership-logo {
+    width: 42px; height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .membership-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+  .membership-since { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  /* ===== LANGUAGES ===== */
+  .lang-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .lang-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    min-width: 130px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .lang-item:hover { border-color: rgba(37,99,235,0.2); }
+
+  .lang-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.25rem; }
+
+  .lang-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* ===== CTA SECTION ===== */
+  #contact {
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(124,58,237,0.05) 100%);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.2); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.animate-ready {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .fade-up.animate-ready.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    nav, .orb, .keywords-strip, #contact { display: none !important; }
+    body { background: white; color: #111; font-size: 10pt; }
+    .card, .project-card, .pub-item, .skill-group, .award-item, .membership-card, .lang-item, .timeline-item {
+      background: white;
+      border: 1px solid #e0e0e0;
+      box-shadow: none;
+      transform: none;
+    }
+    h1 { color: #111; font-size: 22pt; }
+    h2 { color: #111; font-size: 13pt; }
+    .hero-tagline, .section-label, .timeline-date, .pub-meta { color: #555; }
+    .stat-num, h1 .last, .timeline-org { color: #1a56db; }
+    a { color: #1a56db; }
+    section { page-break-inside: avoid; }
+    .wrapper { max-width: 100%; padding: 0 1cm; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    h1 { font-size: 2.1rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+    #contact { padding: 2rem 1.25rem; }
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(37,99,235,0.2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(37,99,235,0.4); }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">NPI<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Get CV</a></li>
+  </ul>
+</nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Open to internship &amp; thesis opportunities · 2026
+        </div>
+        <h1>
+          <span class="first">Nosa Peter </span><span class="last">Inwe</span>
+        </h1>
+        <p class="hero-tagline">Intelligent Photonics · Computer Vision · Machine Learning</p>
+        <p class="hero-desc">
+          Erasmus Mundus MSc student at the University of Eastern Finland, specialising in Biometrics and Intelligent Vision. I build systems at the intersection of optics and deep learning: YOLO pipelines, NIR spectral classifiers, biomedical imaging, and autonomous sensing. Four peer-reviewed publications; IEEE and SPIE member.
+        </p>
+
+        <div class="hero-links">
+          <a href="/cdn-cgi/l/email-protection#47292834262e2930221c26331a3222211c2328331a212e" class="link-chip" onclick="this.href='mailto:nosainwe@uef.fi'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            nosainwe [at] uef [dot] fi
+          </a>
+          <a href="https://github.com/nosainwe" target="_blank" class="link-chip">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            github.com/nosainwe
+          </a>
+          <a href="https://www.linkedin.com/in/nosa-inwe/" target="_blank" class="link-chip">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/nosa-inwe
+          </a>
+          <a href="https://scholar.google.com/citations?user=25hrRsoAAAAJ&hl=en" target="_blank" class="link-chip">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 1l-8.5 5.5L10.5 12 22 6.5 10.5 1zM2 7.5v9l8.5 5 8.5-5v-9L10.5 13 2 7.5z"/></svg>
+            Google Scholar
+          </a>
+          <span class="link-chip" style="cursor:default;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Joensuu, Finland
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-ring">
+          <img src="Nosa_studio_Photo.jpg" alt="Nosa Peter Inwe" class="hero-photo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEYWORDS -->
+  <div class="keywords-strip fade-up">
+    <div class="keywords-inner">
+      <span class="kw">Computer Vision</span>
+      <span class="kw">Deep Learning</span>
+      <span class="kw">PyTorch</span>
+      <span class="kw">TensorFlow</span>
+      <span class="kw">YOLO</span>
+      <span class="kw">Object Detection</span>
+      <span class="kw">Biometrics</span>
+      <span class="kw">NIR Spectroscopy</span>
+      <span class="kw">Biomedical Imaging</span>
+      <span class="kw">OpenCV</span>
+      <span class="kw">Anomaly Detection</span>
+      <span class="kw">Intelligent Photonics</span>
+      <span class="kw">Zemax</span>
+      <span class="kw">Fourier Optics</span>
+      <span class="kw">Transfer Learning</span>
+      <span class="kw">Transformers</span>
+      <span class="kw">ConvLSTM</span>
+      <span class="kw">CLIP</span>
+      <span class="kw">SAM</span>
+      <span class="kw">DETR</span>
+      <span class="kw">Erasmus Mundus</span>
+      <span class="kw">iPSRS</span>
+      <span class="kw">UEF</span>
+      <span class="kw">IEEE</span>
+      <span class="kw">SPIE</span>
+      <span class="kw">Embedded Systems</span>
+      <span class="kw">Python</span>
+      <span class="kw">MATLAB</span>
+      <span class="kw">Scikit-learn</span>
+      <span class="kw">Feature Engineering</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">01</span>
+      <h2>About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card">
+      <div class="about-grid">
+        <p class="about-text">
+          I'm a first-year Erasmus Mundus MSc student in <strong>Intelligent Photonics for Security, Reliability &amp; Safety (iPSRS)</strong>, currently at the <strong>University of Eastern Finland</strong> in Joensuu, with specialisation in Biometrics and Intelligent Vision. Before this, I completed a First Class BEng in Electrical &amp; Electronics Engineering at the University of Benin, graduating in the top 5% of my class.
+        </p>
+        <p class="about-text">
+          My work spans the gap between optics and AI. On the photonics side, I'm drawn to spectroscopy-driven diagnostics and optical design. On the ML side, I build practical systems: detection pipelines, unsupervised anomaly detectors, spectral classifiers. I publish on GitHub under the username <strong>nosainwe</strong>, with clean, typed Python code and MIT-licensed repos. Currently seeking a summer internship or MSc thesis placement in <strong>biomedical spectroscopy or intelligent vision</strong>.
+        </p>
+        <div class="interest-tags">
+          <span class="tag tag-blue">Computational Imaging</span>
+          <span class="tag tag-blue">Computer Vision</span>
+          <span class="tag tag-blue">ML for Imaging</span>
+          <span class="tag tag-purple">Photonics-Enabled Sensing</span>
+          <span class="tag tag-purple">Biometrics</span>
+          <span class="tag tag-green">Biomedical Imaging</span>
+          <span class="tag tag-green">NIR Spectroscopy</span>
+          <span class="tag tag-gold">Intelligent Vision Systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">02</span>
+      <h2>Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="timeline-meta">
+          <span class="timeline-date">Sep 2025 - Sep 2027</span>
+          <span class="timeline-badge tag-green">Current</span>
+        </div>
+        <div class="timeline-title">Erasmus Mundus Joint MSc in Intelligent Photonics for Security, Reliability &amp; Safety</div>
+        <div class="timeline-org">University of Eastern Finland · Université Jean Monnet (France) · Université Paris-Est Créteil (France)</div>
+        <ul class="timeline-points">
+          <li>Specialisation: Biometrics and Intelligent Vision (Semester 2 at UEF, Joensuu)</li>
+          <li>Funded by the Erasmus Mundus Joint Master scholarship, one of the most competitive EU postgraduate awards</li>
+        </ul>
+        <p class="courses-list">Key Courses: Computer Vision and Machine Learning · Digital Image Processing and Analysis · Physical and Fourier Optics · Optical Design · Biometrics II · AI and Innovation Workshop · Display Technologies · Photonics Lab</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2018 - Apr 2024</span>
+          <span class="timeline-badge tag-blue">First Class</span>
+        </div>
+        <div class="timeline-title">Bachelor of Engineering (B.Eng), Electrical/Electronics Engineering</div>
+        <div class="timeline-org">University of Benin, Benin City, Nigeria</div>
+        <ul class="timeline-points">
+          <li>Final grade: First Class (Honours), 4.55/5.0, top 5% of graduating cohort</li>
+          <li>Key Courses: Embedded Systems Design, Control Engineering, Logic Design, Telecommunications, Computer Programming</li>
+          <li>Senate President, Society of Electrical &amp; Electronics Engineering Students (500+ members)</li>
+          <li>Class Governor 2022-2024; awarded Best Class Governor (2024)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">03</span>
+      <h2>Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="timeline-meta">
+          <span class="timeline-date">Sep 2025 - Current</span>
+          <span class="timeline-badge tag-green">Active</span>
+        </div>
+        <div class="timeline-title">Content Creator &amp; A/V Coordinator, EMJM iPSRS Programme</div>
+        <div class="timeline-org">Saint-Étienne, France</div>
+        <ul class="timeline-points">
+          <li>Won 1st Prize at International Day of Photonics 2025 for a short-form educational photonics video produced on 21 Oct 2025</li>
+          <li>Managed full A/V setup for the iPSRS Industrial Workshop (20-22 Oct 2025); co-produced daily recap videos and coordinated remote streaming</li>
+          <li>Produces ongoing short educational and promotional content on optics and photonics for the programme</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Apr 2024 - Sep 2025</span>
+        </div>
+        <div class="timeline-title">Graduate Research Assistant</div>
+        <div class="timeline-org">University of Benin, Benin City, Nigeria</div>
+        <ul class="timeline-points">
+          <li>Co-authored three peer-reviewed papers under Prof. K.O. Ogbeide and Engr. Edosa Osa, including a paper presented at MMSE 2024 in Paris</li>
+          <li>Designed and implemented system architecture for a DSPIC30F2010-based inverter MPPT charge controller (PV input up to 150 V; 24 V battery), integrating multi-sensor data for real-time control decisions</li>
+          <li>Validated stable operation and measured 90.64% power efficiency (1803.7 W out / 1989.9 W in) via oscilloscope-confirmed sinusoidal output and step load testing</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Dec 2023 - May 2024</span>
+        </div>
+        <div class="timeline-title">Undergraduate Researcher</div>
+        <div class="timeline-org">University of Benin, Benin City, Nigeria</div>
+        <ul class="timeline-points">
+          <li>Designed an IoT-driven remote inverter battery monitoring system using ESP32, ADS1115, SIM800L and Blynk IoT; hardware optimisation reduced energy losses by 30%</li>
+          <li>Published findings in JEEECCS (Vol. 10, Issue 36)</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Jun 2023 - Sep 2023</span>
+        </div>
+        <div class="timeline-title">Network Operations Intern</div>
+        <div class="timeline-org">MTN Nigeria Telecommunications PLC, Lagos, Nigeria</div>
+        <ul class="timeline-points">
+          <li>Supported network configuration, troubleshooting, and node maintenance across infrastructure serving over 100 million users</li>
+          <li>Gained hands-on experience with IPsec, routing protocols, GSM architecture, and cloud technologies</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Jul 2019 - Current</span>
+          <span class="timeline-badge tag-gold">Freelance</span>
+        </div>
+        <div class="timeline-title">I.T Support &amp; Cybersecurity Consultant (Remote)</div>
+        <div class="timeline-org">Fiverr</div>
+        <ul class="timeline-points">
+          <li>Delivered 150+ IT, cybersecurity, and technical writing projects globally: vulnerability assessments, Python scripts, security configurations, research reports</li>
+          <li>Maintained 100% client satisfaction rating across all deliverables</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">04</span>
+      <h2>Computer Vision &amp; ML Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(37,99,235,0.08);">🔍</div>
+          <a href="https://github.com/nosainwe/detr-object-detection" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">Object Detection with DETR (Transformers)</div>
+        <p class="project-desc">End-to-end object detection using Detection Transformers with pre-trained COCO weights for advanced set prediction and inference on custom datasets. No NMS required.</p>
+        <div class="project-tags">
+          <span class="project-tag">PyTorch</span>
+          <span class="project-tag">Transformers</span>
+          <span class="project-tag">COCO</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(124,58,237,0.08);">📹</div>
+          <a href="https://github.com/nosainwe/computer-vision-projects/tree/main/cctv-anomaly-detection" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">CCTV Anomaly Detection (ConvLSTM Autoencoder)</div>
+        <p class="project-desc">Unsupervised anomaly detection in surveillance video: trained a ConvLSTM autoencoder on 16-frame clips (128×128), flagging events where reconstruction MSE exceeds threshold.</p>
+        <div class="project-tags">
+          <span class="project-tag">ConvLSTM</span>
+          <span class="project-tag">Autoencoder</span>
+          <span class="project-tag">Unsupervised</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(5,150,105,0.08);">✂️</div>
+          <a href="https://github.com/nosainwe/sam-segmentation" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">Segment Anything (SAM): Zero-Shot Segmentation</div>
+        <p class="project-desc">Deployed Meta's SAM for zero-shot interactive image segmentation using point prompts, box prompts, and automatic mask generation on arbitrary images.</p>
+        <div class="project-tags">
+          <span class="project-tag">SAM</span>
+          <span class="project-tag">Zero-Shot</span>
+          <span class="project-tag">Segmentation</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(217,119,6,0.08);">🌱</div>
+          <a href="https://github.com/nosainwe/seed-counting-computer-vision" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">Automated Seed Counting: Classical Morphology vs. ML</div>
+        <p class="project-desc">Compared three pipelines under uneven illumination and heavy clustering: Top-Hat/DoG + Watershed, LBP separation, and Random Forest regression on global image statistics.</p>
+        <div class="project-tags">
+          <span class="project-tag">Morphology</span>
+          <span class="project-tag">Watershed</span>
+          <span class="project-tag">Random Forest</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(37,99,235,0.08);">🥽</div>
+          <a href="https://github.com/nosainwe/openar-vision-bridge" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">OpenAR Vision Bridge (Virtual OLED HUD)</div>
+        <p class="project-desc">YOLO object detection on live webcam feeds, distilled into a 128×64 monochrome HUD simulating embedded AR glasses output. A hardware-constrained edge AI prototype.</p>
+        <div class="project-tags">
+          <span class="project-tag">YOLO</span>
+          <span class="project-tag">Edge AI</span>
+          <span class="project-tag">AR</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(124,58,237,0.08);">🚨</div>
+          <a href="https://github.com/nosainwe/computer-vision-projects/tree/main/cctv-weapon-classification" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">Threat-Object Classification (MobileNetV2)</div>
+        <p class="project-desc">Binary classifier for weapon presence (gun/knife) in CCTV frames; fine-tuned MobileNetV2 on 1,000+ synthetic YOLO-labelled images.</p>
+        <div class="project-tags">
+          <span class="project-tag">MobileNetV2</span>
+          <span class="project-tag">Transfer Learning</span>
+          <span class="metric">~94% accuracy</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(5,150,105,0.08);">🛩️</div>
+          <a href="https://github.com/nosainwe/computer-vision-projects/tree/main/military-assets-detection" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">Aerial Object Detection (YOLO11n)</div>
+        <p class="project-desc">Trained YOLO11n at 1024×1024 for small-object detection of vehicles and assets in satellite and aerial imagery. 20 epochs, saved prediction visualisations.</p>
+        <div class="project-tags">
+          <span class="project-tag">YOLO11n</span>
+          <span class="project-tag">Aerial Imagery</span>
+          <span class="metric">~85% <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f321e0f1f6f716a">[email&#160;protected]</a></span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(217,119,6,0.08);">🚗</div>
+          <a href="https://github.com/nosainwe/computer-vision-projects/tree/main/license-plate-detection" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">License Plate Detection (YOLO11n)</div>
+        <p class="project-desc">Fine-tuned YOLO11n for automated license-plate localisation in traffic footage. 50-epoch training, annotated video export included.</p>
+        <div class="project-tags">
+          <span class="project-tag">YOLO11n</span>
+          <span class="project-tag">Video Inference</span>
+          <span class="metric">~94% <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="016c405141312f34">[email&#160;protected]</a></span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(37,99,235,0.08);">🦴</div>
+          <a href="https://github.com/nosainwe" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">NIR Cartilage Classifier (Biomedical Spectroscopy POC)</div>
+        <p class="project-desc">Proof-of-concept NIR spectral ML classifier for cartilage tissue characterisation, built to support research at UEF's Biomedical Spectroscopy Lab. Demonstrates cross-domain spectral feature engineering.</p>
+        <div class="project-tags">
+          <span class="project-tag">NIR Spectroscopy</span>
+          <span class="project-tag">Biomedical</span>
+          <span class="project-tag">Scikit-learn</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(124,58,237,0.08);">🧊</div>
+          <a href="https://github.com/nosainwe/3d-bbox-ar-pku" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="project-name">3D Bounding Boxes + AR Overlay (PKU/Baidu)</div>
+        <p class="project-desc">Projected 3D bounding boxes and CAD meshes onto images using camera intrinsics and pose labels from autonomous driving datasets.</p>
+        <div class="project-tags">
+          <span class="project-tag">3D Vision</span>
+          <span class="project-tag">Camera Geometry</span>
+          <span class="project-tag">Autonomous Driving</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">05</span>
+      <h2>Publications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-num">01</div>
+        <div class="pub-content">
+          <div class="pub-title">Eyes on the Road: A Hands-Free Speed Alert System</div>
+          <div class="pub-meta">E. Osse, N. Inwe, K. Bayode, Y. Ayinde, E. Owa, E. Osa, N. Onyeanakwe · <em>Journal of Energy Technology and Environment</em> · 2025</div>
+          <a href="https://zenodo.org/records/15662463" target="_blank" class="pub-link">
+            View Paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">02</div>
+        <div class="pub-content">
+          <div class="pub-title">Design of an Inverter Maximum Power Point Tracking Unit Leveraging a DSPIC30F2010 Microcontroller</div>
+          <div class="pub-meta">Osa E. et al., Inwe N.P. · <em>10th Int'l Conference on Advances in Machinery, Material Science &amp; Engineering Applications (MMSE 2024)</em> · Paris, France</div>
+          <a href="https://ebooks.iospress.nl/doi/10.3233/ATDE240668" target="_blank" class="pub-link">
+            View Paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">03</div>
+        <div class="pub-content">
+          <div class="pub-title">Design and Implementation of a NODEMCU ESP8266 Controlled Vehicle Intruder Touch Alarm System</div>
+          <div class="pub-meta">Onyeanakwe N., Osse E.O., Inwe N.P. et al. · <em>Journal of Energy Technology and Environment (NIPES)</em> · 2024</div>
+          <a href="https://doi.org/10.5281/zenodo.14530162" target="_blank" class="pub-link">
+            View Paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">04</div>
+        <div class="pub-content">
+          <div class="pub-title">Design and Construction of Remote Inverter Battery Management System</div>
+          <div class="pub-meta">Ogbeide K., Inwe N.P. et al. · <em>Journal of Electrical Engineering, Electronics, Control and Computer Science (JEEECCS)</em> · Vol. 10, Issue 36 · 2024</div>
+          <a href="https://jeeeccs.net/index.php/journal/article/view/369" target="_blank" class="pub-link">
+            View Paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">06</span>
+      <h2>Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">AI / ML / CV</div>
+        <div class="skill-items">
+          <span class="skill-item">PyTorch</span>
+          <span class="skill-item">TensorFlow</span>
+          <span class="skill-item">OpenCV</span>
+          <span class="skill-item">YOLO</span>
+          <span class="skill-item">DETR</span>
+          <span class="skill-item">SAM</span>
+          <span class="skill-item">ConvLSTM</span>
+          <span class="skill-item">MobileNetV2</span>
+          <span class="skill-item">Transformers</span>
+          <span class="skill-item">Scikit-learn</span>
+          <span class="skill-item">Pandas</span>
+          <span class="skill-item">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Optics &amp; Photonics</div>
+        <div class="skill-items">
+          <span class="skill-item">Zemax</span>
+          <span class="skill-item">MATLAB</span>
+          <span class="skill-item">Fourier Optics</span>
+          <span class="skill-item">Digital Image Processing</span>
+          <span class="skill-item">Color Science</span>
+          <span class="skill-item">Optical Metrology</span>
+          <span class="skill-item">Holography</span>
+          <span class="skill-item">NIR Spectroscopy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Programming</div>
+        <div class="skill-items">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">C/C++</span>
+          <span class="skill-item">Embedded C</span>
+          <span class="skill-item">MATLAB</span>
+          <span class="skill-item">LaTeX</span>
+          <span class="skill-item">Git</span>
+          <span class="skill-item">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Hardware &amp; IoT</div>
+        <div class="skill-items">
+          <span class="skill-item">ESP32/Arduino</span>
+          <span class="skill-item">DSPIC30F</span>
+          <span class="skill-item">SIM800L</span>
+          <span class="skill-item">ADS1115</span>
+          <span class="skill-item">Sensor Integration</span>
+          <span class="skill-item">Hardware Prototyping</span>
+          <span class="skill-item">Control Systems</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cybersecurity</div>
+        <div class="skill-items">
+          <span class="skill-item">Penetration Testing</span>
+          <span class="skill-item">Vulnerability Assessment</span>
+          <span class="skill-item">Burp Suite</span>
+          <span class="skill-item">Metasploit</span>
+          <span class="skill-item">Kali Linux</span>
+          <span class="skill-item">OSINT</span>
+          <span class="skill-item">CompTIA Security+</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="lang-grid" style="gap:0.5rem;">
+          <div class="lang-item">
+            <div class="lang-name">English</div>
+            <span class="lang-level tag-green" style="border-radius:4px; font-size:0.62rem; font-family:'DM Mono',monospace; padding:0.15rem 0.4rem;">C2 · Fluent</span>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">French</div>
+            <span class="lang-level tag-blue" style="border-radius:4px; font-size:0.62rem; font-family:'DM Mono',monospace; padding:0.15rem 0.4rem;">A1</span>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">Finnish</div>
+            <span class="lang-level tag-purple" style="border-radius:4px; font-size:0.62rem; font-family:'DM Mono',monospace; padding:0.15rem 0.4rem;">Basics</span>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">German</div>
+            <span class="lang-level" style="background:rgba(217,119,6,0.08); color:var(--gold); border:1px solid rgba(217,119,6,0.15); border-radius:4px; font-size:0.62rem; font-family:'DM Mono',monospace; padding:0.15rem 0.4rem;">A1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">07</span>
+      <h2>Awards &amp; Scholarships</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-item">
+        <div class="award-icon">🏆</div>
+        <div>
+          <div class="award-name">1st Prize, International Day of Photonics 2025</div>
+          <div class="award-year">EMJM iPSRS Programme · Oct 2025</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div>
+          <div class="award-name">Erasmus Mundus Joint Master Scholarship</div>
+          <div class="award-year">European Commission · 2025-2027</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🌟</div>
+        <div>
+          <div class="award-name">Best Class Governor Award</div>
+          <div class="award-year">University of Benin · 2024</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">📚</div>
+        <div>
+          <div class="award-name">PTDF In-Country Undergraduate Scholarship</div>
+          <div class="award-year">Petroleum Technology Development Fund · 2021</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">💎</div>
+        <div>
+          <div class="award-name">Edet Amana Foundation Scholarship</div>
+          <div class="award-year">2022</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">📡</div>
+        <div>
+          <div class="award-name">MTN Foundation Scholarship</div>
+          <div class="award-year">MTN Nigeria · 2022</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">⚡</div>
+        <div>
+          <div class="award-name">NNPC/SEPLAT JV National Scholarship</div>
+          <div class="award-year">2022</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🇳🇬</div>
+        <div>
+          <div class="award-name">Federal Government of Nigeria Scholarship</div>
+          <div class="award-year">2022</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🛢️</div>
+        <div>
+          <div class="award-name">Chevron-Agbami Joint Ventures Scholarship</div>
+          <div class="award-year">2020</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🌍</div>
+        <div>
+          <div class="award-name">Jim Ovia MUSTE Scholarship</div>
+          <div class="award-year">2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIPS -->
+  <section id="memberships" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">08</span>
+      <h2>Professional Memberships</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="memberships">
+      <div class="membership-card">
+        <div class="membership-logo" style="background: rgba(0,102,204,0.15); color: #0066CC; border: 1px solid rgba(0,102,204,0.2);">IEEE</div>
+        <div>
+          <div class="membership-name">IEEE: Institute of Electrical and Electronics Engineers</div>
+          <div class="membership-since">Student Member · since 2023</div>
+        </div>
+      </div>
+      <div class="membership-card">
+        <div class="membership-logo" style="background: rgba(231,76,60,0.12); color: #e74c3c; border: 1px solid rgba(231,76,60,0.2);">SPIE</div>
+        <div>
+          <div class="membership-name">SPIE: The International Society for Optics and Photonics</div>
+          <div class="membership-since">Student Member · since 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="fade-up">
+    <div class="section-header">
+      <span class="section-label">09</span>
+      <h2>Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-item">
+        <div class="award-icon">🤖</div>
+        <div>
+          <div class="award-name">Supervised ML: Regression &amp; Classification</div>
+          <div class="award-year">DeepLearning.AI / Coursera</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">✨</div>
+        <div>
+          <div class="award-name">Introducing Generative AI with AWS</div>
+          <div class="award-year">Udacity</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🔒</div>
+        <div>
+          <div class="award-name">CompTIA Security+</div>
+          <div class="award-year">CompTIA</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">☁️</div>
+        <div>
+          <div class="award-name">AWS Cloud Practitioner Essentials</div>
+          <div class="award-year">Amazon Web Services / Coursera</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🧠</div>
+        <div>
+          <div class="award-name">AI for Cybersecurity</div>
+          <div class="award-year">LinkedIn Learning</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🛡️</div>
+        <div>
+          <div class="award-name">Certificate of Cloud Security Knowledge</div>
+          <div class="award-year">Cloud Security Alliance</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🐍</div>
+        <div>
+          <div class="award-name">Programming Essentials in Python (PCAP)</div>
+          <div class="award-year">OpenEDG Python Institute</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">⚙️</div>
+        <div>
+          <div class="award-name">AWS Educate ML Foundations</div>
+          <div class="award-year">Amazon Web Services</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div id="contact" class="fade-up">
+    <div class="cta-label">Available for opportunities · 2026</div>
+    <h2 class="cta-h">Let's build something together.</h2>
+    <p class="cta-sub">
+      I'm actively looking for summer internship or MSc thesis placements in biomedical spectroscopy, intelligent vision, and related fields. Open to research labs and industry roles across Europe.
+    </p>
+    <div class="cta-buttons">
+      <a href="/cdn-cgi/l/email-protection#0a6465796b63647d6f4a7f6f6c246c63" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email Me
+      </a>
+      <a href="https://www.linkedin.com/in/nosa-inwe/" target="_blank" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <button class="btn-secondary" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Download as PDF
+      </button>
+      <a href="https://github.com/nosainwe" target="_blank" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Nosa Peter Inwe · nosainwe [at] uef [dot] fi · Built for GitHub Pages · Single-file site</p>
+    <p style="margin-top:0.4rem; font-size:0.68rem;">Keywords: Computer Vision · Intelligent Photonics · Biometrics · Deep Learning · NIR Spectroscopy · Erasmus Mundus · iPSRS · IEEE · SPIE · YOLO · PyTorch · Biomedical Imaging · UEF Finland</p>
+  </div>
+</footer>
+
+<script>
+  // Content is visible by default; JS adds animation as enhancement
+  document.querySelectorAll('.fade-up').forEach(el => el.classList.add('animate-ready'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
