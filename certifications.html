@@ -1,0 +1,971 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certificates & Learning | Nosa Peter Inwe</title><meta name="description" content="Browse Nosa Peter Inwe’s certificates in machine learning, cybersecurity, programming and research communication."><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f8fafc;
+    --bg2: #f1f5f9;
+    --bg3: #e8eef6;
+    --accent: #2563eb;
+    --accent2: #7c3aed;
+    --accent3: #059669;
+    --gold: #d97706;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: rgba(37,99,235,0.12);
+    --card: rgba(255,255,255,0.9);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ===== NOISE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== GRADIENT ORBS ===== */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(37,99,235,0.05); top: -200px; right: -100px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(124,58,237,0.04); bottom: 200px; left: -150px; }
+  .orb-3 { width: 300px; height: 300px; background: rgba(5,150,105,0.04); top: 50%; left: 50%; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(248,250,252,0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-brand span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--text); background: rgba(37,99,235,0.08); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover { background: #1d4ed8 !important; color: #ffffff !important; }
+
+  /* ===== WRAPPER ===== */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    position: relative;
+  }
+
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-photo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-photo-ring {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 8px 40px rgba(37,99,235,0.18);
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 3px solid #fff;
+  }
+
+  @media (max-width: 680px) {
+    .hero-inner {
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
+    .hero-photo-ring {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(37,99,235,0.07);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 .first { color: var(--text); }
+  h1 .last { color: var(--accent); }
+
+  .hero-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: rgba(255,255,255,0.8);
+  }
+
+  .link-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(37,99,235,0.06);
+    transform: translateY(-1px);
+  }
+
+  .link-chip svg { width: 13px; height: 13px; }
+
+  /* stat styles removed */
+
+  /* ===== KEYWORDS STRIP ===== */
+  .keywords-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    margin-bottom: 5rem;
+    overflow: hidden;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+
+  .keywords-inner {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .kw {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .kw:hover { color: var(--accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
+
+  /* ===== SECTIONS ===== */
+  section { margin-bottom: 5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 1px 4px rgba(15,23,42,0.06);
+  }
+
+  .card:hover {
+    border-color: rgba(37,99,235,0.3);
+    box-shadow: 0 4px 20px rgba(37,99,235,0.07);
+    transform: translateY(-2px);
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-text {
+    grid-column: 1 / -1;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .about-text strong { color: var(--text); }
+
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .tag-blue { background: rgba(37,99,235,0.08); color: var(--accent); border: 1px solid rgba(37,99,235,0.18); }
+  .tag-purple { background: rgba(124,58,237,0.08); color: var(--accent2); border: 1px solid rgba(124,58,237,0.18); }
+  .tag-green { background: rgba(5,150,105,0.08); color: var(--accent3); border: 1px solid rgba(5,150,105,0.18); }
+  .tag-gold { background: rgba(217,119,6,0.08); color: var(--gold); border: 1px solid rgba(217,119,6,0.18); }
+
+  /* ===== TIMELINE ===== */
+  .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  }
+
+  .timeline-item.current::before {
+    background: var(--accent3);
+    box-shadow: 0 0 0 3px rgba(5,150,105,0.12);
+    animation: glowPulse 2s infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(5,150,105,0.12); }
+    50% { box-shadow: 0 0 0 6px rgba(5,150,105,0.06); }
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  .timeline-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .timeline-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-org {
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .timeline-points li {
+    font-size: 0.84rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-points li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .courses-list {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  /* ===== PROJECTS GRID ===== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-card:hover {
+    border-color: rgba(37,99,235,0.3);
+    box-shadow: 0 8px 30px rgba(37,99,235,0.08);
+    transform: translateY(-3px);
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .project-github {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .project-github:hover { color: var(--accent); }
+  .project-github svg { width: 16px; height: 16px; }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    background: rgba(124,58,237,0.07);
+    border: 1px solid rgba(124,58,237,0.15);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .metric {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent3);
+    background: rgba(5,150,105,0.07);
+    border: 1px solid rgba(5,150,105,0.15);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* ===== PUBLICATIONS ===== */
+  .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.2s;
+  }
+
+  .pub-item:hover {
+    border-color: rgba(37,99,235,0.2);
+    transform: translateX(3px);
+  }
+
+  .pub-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: rgba(37,99,235,0.15);
+    line-height: 1;
+    min-width: 24px;
+    padding-top: 2px;
+  }
+
+  .pub-content { flex: 1; }
+
+  .pub-title {
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+  }
+
+  .pub-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-link {
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+
+  .pub-link:hover { color: #1d4ed8; }
+  .pub-link svg { width: 10px; height: 10px; }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+
+  .skill-group:hover { border-color: rgba(37,99,235,0.25); }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.9rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-item {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+
+  .skill-item:hover { color: var(--accent); background: rgba(37,99,235,0.06); border-color: rgba(37,99,235,0.2); }
+
+  /* ===== AWARDS ===== */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .award-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .award-item:hover { border-color: rgba(217,119,6,0.3); }
+
+  .award-icon { font-size: 1.2rem; line-height: 1; margin-top: 1px; }
+
+  .award-name { font-size: 0.83rem; color: var(--text); font-weight: 500; margin-bottom: 0.15rem; }
+  .award-year { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  /* ===== MEMBERSHIPS ===== */
+  .memberships { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .membership-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 200px;
+    transition: all 0.2s;
+  }
+
+  .membership-card:hover { border-color: rgba(37,99,235,0.2); transform: translateY(-2px); }
+
+  .membership-logo {
+    width: 42px; height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .membership-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+  .membership-since { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  /* ===== LANGUAGES ===== */
+  .lang-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .lang-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    min-width: 130px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .lang-item:hover { border-color: rgba(37,99,235,0.2); }
+
+  .lang-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.25rem; }
+
+  .lang-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* ===== CTA SECTION ===== */
+  #contact {
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(124,58,237,0.05) 100%);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.2); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.animate-ready {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .fade-up.animate-ready.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    nav, .orb, .keywords-strip, #contact { display: none !important; }
+    body { background: white; color: #111; font-size: 10pt; }
+    .card, .project-card, .pub-item, .skill-group, .award-item, .membership-card, .lang-item, .timeline-item {
+      background: white;
+      border: 1px solid #e0e0e0;
+      box-shadow: none;
+      transform: none;
+    }
+    h1 { color: #111; font-size: 22pt; }
+    h2 { color: #111; font-size: 13pt; }
+    .hero-tagline, .section-label, .timeline-date, .pub-meta { color: #555; }
+    .stat-num, h1 .last, .timeline-org { color: #1a56db; }
+    a { color: #1a56db; }
+    section { page-break-inside: avoid; }
+    .wrapper { max-width: 100%; padding: 0 1cm; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    h1 { font-size: 2.1rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+    #contact { padding: 2rem 1.25rem; }
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(37,99,235,0.2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(37,99,235,0.4); }
+
+section[id],#contact{scroll-margin-top:85px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent2);outline-offset:4px} @media(max-width:760px){nav{padding:0 1rem;gap:1rem}.nav-links{overflow-x:auto;white-space:nowrap;min-width:0}.nav-links a{font-size:.65rem;padding:.4rem .45rem}.wrapper{padding:0 1.1rem}} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.fade-up.animate-ready{opacity:1;transform:none}}
+
+.cert-hero{padding:110px 0 2rem}.cert-hero h1{margin:1rem 0}.cert-hero p{max-width:650px;color:var(--muted)}.cert-controls{display:flex;gap:1rem;flex-wrap:wrap;padding:1.4rem;margin-bottom:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px}.cert-field{display:flex;flex-direction:column;gap:.4rem;flex:1;min-width:200px}.cert-field label{font-size:.75rem;font-weight:600}.cert-field input,.cert-field select{font:inherit;color:var(--text);background:white;border:1px solid #94a3b8;border-radius:7px;padding:.7rem;width:100%}.cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0 3rem}.cert-card{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;min-width:0}.cert-card h2{font-size:1.05rem;line-height:1.4;overflow-wrap:anywhere}.cert-meta{font-family:'DM Mono',monospace;font-size:.64rem;color:var(--muted)}.cert-issuer{font-size:.85rem;color:var(--muted)}.cert-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:auto;padding-top:.6rem}.cert-links a{font-size:.78rem;color:var(--accent);font-weight:600}.cert-card[hidden]{display:none}#cert-count,#no-results{color:var(--muted)}.supporting{margin:2rem 0 4rem;padding:1.5rem}.supporting h2{font-size:1.1rem}.supporting p{color:var(--muted);margin-top:.6rem}@media(max-width:600px){.cert-grid{grid-template-columns:1fr}.cert-hero h1{font-size:2.25rem}.cert-controls{padding:1rem}.cert-field{min-width:0;flex-basis:100%}}
+@media(max-width:640px){nav{height:auto;min-height:58px;padding:.6rem 1rem}.nav-brand{flex-shrink:0}.nav-links{display:flex;flex-wrap:wrap;overflow:visible;justify-content:flex-end;gap:.15rem}.nav-links a{font-size:.6rem;padding:.3rem .35rem}.skills-grid{grid-template-columns:1fr}}
+</style></head><body><nav aria-label="Main navigation"><a class="nav-brand" href="index.html">NPI<span>.</span></a><ul class="nav-links"><li><a href="index.html">Portfolio</a></li><li><a href="index.html#experience">Experience</a></li><li><a href="certifications.html" aria-current="page">Certificates</a></li><li><a href="mailto:nosa.inwe@uef.fi" class="nav-cta">Contact</a></li></ul></nav><main class="wrapper"><header class="cert-hero"><span class="section-label">Continuous learning</span><h1>Certificates &amp; Learning</h1><p>A collection of 50 professional certifications, courses, learning paths and programmes. Explore the topics below and open the original certificates.</p></header><div class="cert-controls"><div class="cert-field"><label for="cert-search">Search certificates</label><input id="cert-search" type="search" placeholder="Try machine learning, Google, cybersecurity…"></div><div class="cert-field"><label for="cert-category">Topic</label><select id="cert-category"><option value="">All topics</option><option>AI &amp; Machine Learning</option><option>Cybersecurity &amp; Cloud</option><option>Programming &amp; IoT</option><option>Research &amp; Communication</option></select></div></div><p id="cert-count" role="status" aria-live="polite">50 certificates</p><div class="cert-grid"><article class="cert-card card" data-category="AI &amp; Machine Learning"><div class="cert-meta">Course completion · <time datetime="2025-07-12">2025-07-12</time></div><h2>Introducing Generative AI with AWS</h2><p class="cert-issuer">Udacity</p><span class="tag tag-blue">AI &amp; Machine Learning</span><div class="cert-links"><a href="certificates/introducing-generative-ai-with-aws.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Job simulation · <time datetime="2025-06-22">2025-06-22</time></div><h2>Deloitte Cyber Job Simulation</h2><p class="cert-issuer">Forage</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/deloitte-cyber-job-simulation.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Job simulation · <time datetime="2025-06-22">2025-06-22</time></div><h2>Mastercard Cybersecurity Job Simulation</h2><p class="cert-issuer">Forage</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/mastercard-cybersecurity-job-simulation.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Professional certification · <time datetime="2025-04-21">2025-04-21</time></div><h2>CompTIA Security+</h2><p class="cert-issuer">CompTIA</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/comptia-security.jpeg" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Professional certification · <time datetime="2025-02-18">2025-02-18</time></div><h2>Certified Network Security Practitioner (CNSP)</h2><p class="cert-issuer">The SecOps Group</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/certified-network-security-practitioner-cnsp.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>Data visualization and choosing the right plot</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/data-visualization-and-choosing-the-right-plot.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Certificate of excellence · <time datetime="2024-10-07">2024-10-07</time></div><h2>Fundamentals of manuscript preparation</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/fundamentals-of-manuscript-preparation.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>Generative AI in the Publishing Community</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/generative-ai-in-the-publishing-community.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>Generative AI: New policies, opportunities, and risks</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/generative-ai-new-policies-opportunities-and-risks.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>Generative AI: Q&amp;A</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/generative-ai-q-a.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>The evolution of data visualization</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/the-evolution-of-data-visualization.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>The why and how of data visualization</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/the-why-and-how-of-data-visualization.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-07">2024-10-07</time></div><h2>Three contexts for data visualisation</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/three-contexts-for-data-visualisation.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>Author policies on the use of Generative AI</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/author-policies-on-the-use-of-generative-ai.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>From article to art: Creating visual abstracts - Part 3: Designing</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/from-article-to-art-creating-visual-abstracts-part-3-designing.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>From article to art: Creating visual abstracts - Part 4: Sketching the appropriate visual elements</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/from-article-to-art-creating-visual-abstracts-part-4-sketching-the-appropriate-visual-elements.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>From article to art: Creating visual abstracts - Parts 1 &amp; 2: A Guide to Visual Abstracts</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/from-article-to-art-creating-visual-abstracts-parts-1-2-a-guide-to-visual-abstracts.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>Guide to reference managers: How to effectively manage your references</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/guide-to-reference-managers-how-to-effectively-manage-your-references.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>How to prepare your manuscript</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/how-to-prepare-your-manuscript.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>How to write an abstract and improve your article</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/how-to-write-an-abstract-and-improve-your-article.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-10-06">2024-10-06</time></div><h2>Structuring your article correctly</h2><p class="cert-issuer">Elsevier Researcher Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/structuring-your-article-correctly.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="AI &amp; Machine Learning"><div class="cert-meta">Course completion · <time datetime="2024-09-17">2024-09-17</time></div><h2>Supervised Machine Learning: Regression and Classification</h2><p class="cert-issuer">DeepLearning.AI / Stanford University / Coursera</p><span class="tag tag-blue">AI &amp; Machine Learning</span><div class="cert-links"><a href="certificates/supervised-machine-learning-regression-and-classification.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/C6BSHMOWS2WO" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="AI &amp; Machine Learning"><div class="cert-meta">Course completion · <time datetime="2024-08-16">2024-08-16</time></div><h2>Artificial Intelligence for Cybersecurity</h2><p class="cert-issuer">LinkedIn Learning</p><span class="tag tag-blue">AI &amp; Machine Learning</span><div class="cert-links"><a href="certificates/artificial-intelligence-for-cybersecurity.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="AI &amp; Machine Learning"><div class="cert-meta">Course completion · <time datetime="2024-08-16">2024-08-16</time></div><h2>Artificial Intelligence Foundations: Machine Learning</h2><p class="cert-issuer">LinkedIn Learning</p><span class="tag tag-blue">AI &amp; Machine Learning</span><div class="cert-links"><a href="certificates/artificial-intelligence-foundations-machine-learning.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Learning path completion · <time datetime="2024-01-20">2024-01-20</time></div><h2>Jr Penetration Tester Learning Path</h2><p class="cert-issuer">TryHackMe</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/jr-penetration-tester-learning-path.jpg" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-01-04">2024-01-04</time></div><h2>Speaking to Inspire: Ceremonial and Motivational Speeches</h2><p class="cert-issuer">University of Washington / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/speaking-to-inspire-ceremonial-and-motivational-speeches.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/AU84HQ6JAC9P" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-01-03">2024-01-03</time></div><h2>Introduction to Public Speaking</h2><p class="cert-issuer">University of Washington / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/introduction-to-public-speaking.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/7Q2XQZA83NZ4" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2024-01-02">2024-01-02</time></div><h2>Critical Thinking Skills for University Success</h2><p class="cert-issuer">The University of Sydney / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/critical-thinking-skills-for-university-success.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/4QYM22JTK92V" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Mentorship completion · <time datetime="2024-01">2024-01</time></div><h2>Tenadre Mentees: One-Year Mentorship Programme</h2><p class="cert-issuer">Tenadre Mentees</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/tenadre-mentees-one-year-mentorship-programme.jpg" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Learning path completion · <time datetime="2023-08-27">2023-08-27</time></div><h2>Introduction to Cyber Security Learning Path</h2><p class="cert-issuer">TryHackMe</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/introduction-to-cyber-security-learning-path.png" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2023-08-14">2023-08-14</time></div><h2>Effective Business Presentations with Powerpoint</h2><p class="cert-issuer">PwC / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/effective-business-presentations-with-powerpoint.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/E2SX2HVEPJ2V" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2023-08-13">2023-08-13</time></div><h2>Free Scrum Master Training</h2><p class="cert-issuer">Master of Project Academy</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/free-scrum-master-training.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2023-07-26">2023-07-26</time></div><h2>Connect and Protect: Networks and Network Security</h2><p class="cert-issuer">Google / Coursera</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/connect-and-protect-networks-and-network-security.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/ZWNX4SMD9JJ8" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2023-07-21">2023-07-21</time></div><h2>Put It to Work: Prepare for Cybersecurity Jobs</h2><p class="cert-issuer">Google / Coursera</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/put-it-to-work-prepare-for-cybersecurity-jobs.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/WZCLDRK2H94N" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2023-07-11">2023-07-11</time></div><h2>AWS Cloud Practitioner Essentials</h2><p class="cert-issuer">Amazon Web Services / Coursera</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/aws-cloud-practitioner-essentials.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/VE7S2PRU7SVR" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2023-07-02">2023-07-02</time></div><h2>Work Smarter, Not Harder: Time Management for Personal &amp; Professional Productivity</h2><p class="cert-issuer">University of California, Irvine / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/work-smarter-not-harder-time-management-for-personal-professional-productivity.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/8JPT6AFEYY3F" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2023-06-28">2023-06-28</time></div><h2>Introduction to Cybersecurity Tools &amp; Cyber Attacks</h2><p class="cert-issuer">IBM / Coursera</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/introduction-to-cybersecurity-tools-cyber-attacks.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/ZH8X7RJBL464" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2023-06-23">2023-06-23</time></div><h2>Foundations of Cybersecurity</h2><p class="cert-issuer">Google / Coursera</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/foundations-of-cybersecurity.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/8MRYDALRYM5X" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2023-06-20">2023-06-20</time></div><h2>Business Writing</h2><p class="cert-issuer">University of Colorado Boulder / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/business-writing.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/JWZP3BV94GGV" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Research &amp; Communication"><div class="cert-meta">Course completion · <time datetime="2023-06-19">2023-06-19</time></div><h2>Improving Communication Skills</h2><p class="cert-issuer">University of Pennsylvania / Coursera</p><span class="tag tag-blue">Research &amp; Communication</span><div class="cert-links"><a href="certificates/improving-communication-skills.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a><a href="https://coursera.org/verify/KWWSEYK59E29" target="_blank" rel="noopener noreferrer">Issuer verification ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2023-01-21">2023-01-21</time></div><h2>PCAP: Programming Essentials in Python</h2><p class="cert-issuer">Cisco Networking Academy / OpenEDG Python Institute</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/pcap-programming-essentials-in-python.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2022-12-28">2022-12-28</time></div><h2>Networking Essentials</h2><p class="cert-issuer">Cisco Networking Academy</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/networking-essentials.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Training completion · <time datetime="2022-09-24">2022-09-24</time></div><h2>CCSK v4.1 Foundation Training</h2><p class="cert-issuer">Cloud Security Alliance</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/ccsk-v4-1-foundation-training.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2022-08-31">2022-08-31</time></div><h2>Introduction to IoT</h2><p class="cert-issuer">Cisco Networking Academy</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/introduction-to-iot.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Cybersecurity &amp; Cloud"><div class="cert-meta">Course completion · <time datetime="2021-04-15">2021-04-15</time></div><h2>Introduction to Cybersecurity</h2><p class="cert-issuer">Cisco Networking Academy</p><span class="tag tag-blue">Cybersecurity &amp; Cloud</span><div class="cert-links"><a href="certificates/introduction-to-cybersecurity.jpg" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Certificate of participation · <time datetime="2021-02-12">2021-02-12</time></div><h2>Google Africa Developer Training Program: Mobile Web Development</h2><p class="cert-issuer">Google / Andela / Pluralsight</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/google-africa-developer-training-program-mobile-web-development.jpg" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2020-04-12">2020-04-12</time></div><h2>JavaScript</h2><p class="cert-issuer">Sololearn</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/javascript.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2020-03-26">2020-03-26</time></div><h2>Python Core</h2><p class="cert-issuer">Sololearn</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/python-core.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2020-02-22">2020-02-22</time></div><h2>C++</h2><p class="cert-issuer">Sololearn</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/c.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article>
+<article class="cert-card card" data-category="Programming &amp; IoT"><div class="cert-meta">Course completion · <time datetime="2019-02-06">2019-02-06</time></div><h2>HTML Fundamentals</h2><p class="cert-issuer">Sololearn</p><span class="tag tag-blue">Programming &amp; IoT</span><div class="cert-links"><a href="certificates/html-fundamentals.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></article></div><p id="no-results" hidden>No certificates match your search. Try another term or choose all topics.</p><aside class="card supporting"><h2>Experience &amp; mentorship</h2><p><a href="certificates/tenadre-mentorship-profile.jpg" target="_blank" rel="noopener noreferrer">Tenadre Mentees profile ↗</a></p><p>MTN Nigeria internship completed June–September 2023. Completion letter available on request.</p></aside><noscript><p>All certificates are shown. Search and topic filters require JavaScript.</p></noscript></main><footer><div class="wrapper">© 2026 Nosa Peter Inwe · <a href="index.html">Back to portfolio</a></div></footer><script src="certifications.js" defer></script></body></html>

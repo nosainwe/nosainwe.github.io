@@ -1,0 +1,415 @@
+[
+  {
+    "title": "Introducing Generative AI with AWS",
+    "issuer": "Udacity",
+    "category": "AI & Machine Learning",
+    "type": "Course completion",
+    "date": "2025-07-12",
+    "url": "certificates/introducing-generative-ai-with-aws.pdf"
+  },
+  {
+    "title": "Deloitte Cyber Job Simulation",
+    "issuer": "Forage",
+    "category": "Cybersecurity & Cloud",
+    "type": "Job simulation",
+    "date": "2025-06-22",
+    "url": "certificates/deloitte-cyber-job-simulation.pdf"
+  },
+  {
+    "title": "Mastercard Cybersecurity Job Simulation",
+    "issuer": "Forage",
+    "category": "Cybersecurity & Cloud",
+    "type": "Job simulation",
+    "date": "2025-06-22",
+    "url": "certificates/mastercard-cybersecurity-job-simulation.pdf"
+  },
+  {
+    "title": "CompTIA Security+",
+    "issuer": "CompTIA",
+    "category": "Cybersecurity & Cloud",
+    "type": "Professional certification",
+    "date": "2025-04-21",
+    "url": "certificates/comptia-security.jpeg"
+  },
+  {
+    "title": "Certified Network Security Practitioner (CNSP)",
+    "issuer": "The SecOps Group",
+    "category": "Cybersecurity & Cloud",
+    "type": "Professional certification",
+    "date": "2025-02-18",
+    "url": "certificates/certified-network-security-practitioner-cnsp.pdf"
+  },
+  {
+    "title": "Data visualization and choosing the right plot",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/data-visualization-and-choosing-the-right-plot.pdf"
+  },
+  {
+    "title": "Fundamentals of manuscript preparation",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Certificate of excellence",
+    "date": "2024-10-07",
+    "url": "certificates/fundamentals-of-manuscript-preparation.pdf"
+  },
+  {
+    "title": "Generative AI in the Publishing Community",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/generative-ai-in-the-publishing-community.pdf"
+  },
+  {
+    "title": "Generative AI: New policies, opportunities, and risks",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/generative-ai-new-policies-opportunities-and-risks.pdf"
+  },
+  {
+    "title": "Generative AI: Q&A",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/generative-ai-q-a.pdf"
+  },
+  {
+    "title": "The evolution of data visualization",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/the-evolution-of-data-visualization.pdf"
+  },
+  {
+    "title": "The why and how of data visualization",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/the-why-and-how-of-data-visualization.pdf"
+  },
+  {
+    "title": "Three contexts for data visualisation",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-07",
+    "url": "certificates/three-contexts-for-data-visualisation.pdf"
+  },
+  {
+    "title": "Author policies on the use of Generative AI",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/author-policies-on-the-use-of-generative-ai.pdf"
+  },
+  {
+    "title": "From article to art: Creating visual abstracts - Part 3: Designing",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/from-article-to-art-creating-visual-abstracts-part-3-designing.pdf"
+  },
+  {
+    "title": "From article to art: Creating visual abstracts - Part 4: Sketching the appropriate visual elements",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/from-article-to-art-creating-visual-abstracts-part-4-sketching-the-appropriate-visual-elements.pdf"
+  },
+  {
+    "title": "From article to art: Creating visual abstracts - Parts 1 & 2: A Guide to Visual Abstracts",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/from-article-to-art-creating-visual-abstracts-parts-1-2-a-guide-to-visual-abstracts.pdf"
+  },
+  {
+    "title": "Guide to reference managers: How to effectively manage your references",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/guide-to-reference-managers-how-to-effectively-manage-your-references.pdf"
+  },
+  {
+    "title": "How to prepare your manuscript",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/how-to-prepare-your-manuscript.pdf"
+  },
+  {
+    "title": "How to write an abstract and improve your article",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/how-to-write-an-abstract-and-improve-your-article.pdf"
+  },
+  {
+    "title": "Structuring your article correctly",
+    "issuer": "Elsevier Researcher Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-10-06",
+    "url": "certificates/structuring-your-article-correctly.pdf"
+  },
+  {
+    "title": "Supervised Machine Learning: Regression and Classification",
+    "issuer": "DeepLearning.AI / Stanford University / Coursera",
+    "category": "AI & Machine Learning",
+    "type": "Course completion",
+    "date": "2024-09-17",
+    "verify": "https://coursera.org/verify/C6BSHMOWS2WO",
+    "url": "certificates/supervised-machine-learning-regression-and-classification.pdf"
+  },
+  {
+    "title": "Artificial Intelligence for Cybersecurity",
+    "issuer": "LinkedIn Learning",
+    "category": "AI & Machine Learning",
+    "type": "Course completion",
+    "date": "2024-08-16",
+    "url": "certificates/artificial-intelligence-for-cybersecurity.pdf"
+  },
+  {
+    "title": "Artificial Intelligence Foundations: Machine Learning",
+    "issuer": "LinkedIn Learning",
+    "category": "AI & Machine Learning",
+    "type": "Course completion",
+    "date": "2024-08-16",
+    "url": "certificates/artificial-intelligence-foundations-machine-learning.pdf"
+  },
+  {
+    "title": "Jr Penetration Tester Learning Path",
+    "issuer": "TryHackMe",
+    "category": "Cybersecurity & Cloud",
+    "type": "Learning path completion",
+    "date": "2024-01-20",
+    "url": "certificates/jr-penetration-tester-learning-path.jpg"
+  },
+  {
+    "title": "Speaking to Inspire: Ceremonial and Motivational Speeches",
+    "issuer": "University of Washington / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-01-04",
+    "verify": "https://coursera.org/verify/AU84HQ6JAC9P",
+    "url": "certificates/speaking-to-inspire-ceremonial-and-motivational-speeches.pdf"
+  },
+  {
+    "title": "Introduction to Public Speaking",
+    "issuer": "University of Washington / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-01-03",
+    "verify": "https://coursera.org/verify/7Q2XQZA83NZ4",
+    "url": "certificates/introduction-to-public-speaking.pdf"
+  },
+  {
+    "title": "Critical Thinking Skills for University Success",
+    "issuer": "The University of Sydney / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2024-01-02",
+    "verify": "https://coursera.org/verify/4QYM22JTK92V",
+    "url": "certificates/critical-thinking-skills-for-university-success.pdf"
+  },
+  {
+    "title": "Tenadre Mentees: One-Year Mentorship Programme",
+    "issuer": "Tenadre Mentees",
+    "category": "Research & Communication",
+    "type": "Mentorship completion",
+    "date": "2024-01",
+    "url": "certificates/tenadre-mentees-one-year-mentorship-programme.jpg"
+  },
+  {
+    "title": "Introduction to Cyber Security Learning Path",
+    "issuer": "TryHackMe",
+    "category": "Cybersecurity & Cloud",
+    "type": "Learning path completion",
+    "date": "2023-08-27",
+    "url": "certificates/introduction-to-cyber-security-learning-path.png"
+  },
+  {
+    "title": "Effective Business Presentations with Powerpoint",
+    "issuer": "PwC / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2023-08-14",
+    "verify": "https://coursera.org/verify/E2SX2HVEPJ2V",
+    "url": "certificates/effective-business-presentations-with-powerpoint.pdf"
+  },
+  {
+    "title": "Free Scrum Master Training",
+    "issuer": "Master of Project Academy",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2023-08-13",
+    "url": "certificates/free-scrum-master-training.pdf"
+  },
+  {
+    "title": "Connect and Protect: Networks and Network Security",
+    "issuer": "Google / Coursera",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2023-07-26",
+    "verify": "https://coursera.org/verify/ZWNX4SMD9JJ8",
+    "url": "certificates/connect-and-protect-networks-and-network-security.pdf"
+  },
+  {
+    "title": "Put It to Work: Prepare for Cybersecurity Jobs",
+    "issuer": "Google / Coursera",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2023-07-21",
+    "verify": "https://coursera.org/verify/WZCLDRK2H94N",
+    "url": "certificates/put-it-to-work-prepare-for-cybersecurity-jobs.pdf"
+  },
+  {
+    "title": "AWS Cloud Practitioner Essentials",
+    "issuer": "Amazon Web Services / Coursera",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2023-07-11",
+    "verify": "https://coursera.org/verify/VE7S2PRU7SVR",
+    "url": "certificates/aws-cloud-practitioner-essentials.pdf"
+  },
+  {
+    "title": "Work Smarter, Not Harder: Time Management for Personal & Professional Productivity",
+    "issuer": "University of California, Irvine / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2023-07-02",
+    "verify": "https://coursera.org/verify/8JPT6AFEYY3F",
+    "url": "certificates/work-smarter-not-harder-time-management-for-personal-professional-productivity.pdf"
+  },
+  {
+    "title": "Introduction to Cybersecurity Tools & Cyber Attacks",
+    "issuer": "IBM / Coursera",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2023-06-28",
+    "verify": "https://coursera.org/verify/ZH8X7RJBL464",
+    "url": "certificates/introduction-to-cybersecurity-tools-cyber-attacks.pdf"
+  },
+  {
+    "title": "Foundations of Cybersecurity",
+    "issuer": "Google / Coursera",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2023-06-23",
+    "verify": "https://coursera.org/verify/8MRYDALRYM5X",
+    "url": "certificates/foundations-of-cybersecurity.pdf"
+  },
+  {
+    "title": "Business Writing",
+    "issuer": "University of Colorado Boulder / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2023-06-20",
+    "verify": "https://coursera.org/verify/JWZP3BV94GGV",
+    "url": "certificates/business-writing.pdf"
+  },
+  {
+    "title": "Improving Communication Skills",
+    "issuer": "University of Pennsylvania / Coursera",
+    "category": "Research & Communication",
+    "type": "Course completion",
+    "date": "2023-06-19",
+    "verify": "https://coursera.org/verify/KWWSEYK59E29",
+    "url": "certificates/improving-communication-skills.pdf"
+  },
+  {
+    "title": "PCAP: Programming Essentials in Python",
+    "issuer": "Cisco Networking Academy / OpenEDG Python Institute",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2023-01-21",
+    "url": "certificates/pcap-programming-essentials-in-python.pdf"
+  },
+  {
+    "title": "Networking Essentials",
+    "issuer": "Cisco Networking Academy",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2022-12-28",
+    "url": "certificates/networking-essentials.pdf"
+  },
+  {
+    "title": "CCSK v4.1 Foundation Training",
+    "issuer": "Cloud Security Alliance",
+    "category": "Cybersecurity & Cloud",
+    "type": "Training completion",
+    "date": "2022-09-24",
+    "url": "certificates/ccsk-v4-1-foundation-training.pdf"
+  },
+  {
+    "title": "Introduction to IoT",
+    "issuer": "Cisco Networking Academy",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2022-08-31",
+    "url": "certificates/introduction-to-iot.pdf"
+  },
+  {
+    "title": "Introduction to Cybersecurity",
+    "issuer": "Cisco Networking Academy",
+    "category": "Cybersecurity & Cloud",
+    "type": "Course completion",
+    "date": "2021-04-15",
+    "url": "certificates/introduction-to-cybersecurity.jpg"
+  },
+  {
+    "title": "Google Africa Developer Training Program: Mobile Web Development",
+    "issuer": "Google / Andela / Pluralsight",
+    "category": "Programming & IoT",
+    "type": "Certificate of participation",
+    "date": "2021-02-12",
+    "url": "certificates/google-africa-developer-training-program-mobile-web-development.jpg"
+  },
+  {
+    "title": "JavaScript",
+    "issuer": "Sololearn",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2020-04-12",
+    "url": "certificates/javascript.pdf"
+  },
+  {
+    "title": "Python Core",
+    "issuer": "Sololearn",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2020-03-26",
+    "url": "certificates/python-core.pdf"
+  },
+  {
+    "title": "C++",
+    "issuer": "Sololearn",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2020-02-22",
+    "url": "certificates/c.pdf"
+  },
+  {
+    "title": "HTML Fundamentals",
+    "issuer": "Sololearn",
+    "category": "Programming & IoT",
+    "type": "Course completion",
+    "date": "2019-02-06",
+    "url": "certificates/html-fundamentals.pdf"
+  }
+]
